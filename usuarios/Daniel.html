@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <!-- ----------------------------------------------------------------------------------------------------------------------------HEAD -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- ------------------------------------------------------------------------------------------------------------BOOTSTRAP -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <!-- ------------------------------------------------------------------------------------------------------------FORMATO -->
+    <title>Ecopetro Oficial</title>
+    <link rel="icon" type="image/x-icon" href="https://drive.google.com/thumbnail?id=1eNQo0PV_yAyWQMpgcyC5Mot7_f3aLhsF">
+    
+    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="stylesheet" href="/styles/Daniel.css" />
+  </head>
+
+  <!-- ----------------------------------------------------------------------------------------------------------------------------BODY -->
+  <body>
+    <div
+      id="body-1"
+      class="d-flex flex-row justify-content-around align-items-start"
+    >
+      <div id="body-2">
+    <!-- ------------------------------------------------------------------------------------------------------------HEADER -->
+    <header id="header">
+      <div id="header-cover" class="row">
+        <div class="col d-flex flex-row justify-content-center">
+          <a href="/index.html">
+            <img
+              src="https://drive.google.com/thumbnail?id=10FYSgRhkNxqL5tMDQPOWHV80mLubWFAt"
+              alt="volver"
+              id="button-back"
+            />
+          </a>
+        </div>
+        <div class="col"></div>
+        <div class="col"></div>
+      </div>
+      <div
+        id="header-data"
+        class="d-flex flex-column justify-content-end align-items-center shadow"
+      >
+        <div id="img-perfil"></div>
+        <h1>Daniel Gómez</h1>
+        <h5>he/his</h5>
+        <p>30 años</p>
+        <p>Argentina</p>
+        <p>Ingeniero agropecuario</p>
+      </div>
+    </header>
+
+    <!-- ------------------------------------------------------------------------------------------------------------SECCIONES -->
+    <div id="secciones">
+      <!-- ---------------------------------------------------------------------------------------SOBRE MÍ -->
+      <section id="secciones-sobreMi">
+        <h2 class="rosita">Sobre mí</h2>
+        <div
+          id="sobreMi-cards"
+          class="d-flex flex-row justify-content-between align-items-center"
+        >
+          <div class="card">
+            <img
+              src="https://drive.google.com/thumbnail?id=1X15joV3dmNhbUAWQIkFPLTsM2wwAUTFZ"
+              alt="foto del campo"
+            />
+          </div>
+          <div class="card">
+            <p>
+              Mi nombre es Daniel Gomez, tengo 30 años. Ingrese a Ecopetro en el
+              año 2040, y soy el encargado del
+              <span class="rosita">Proyecto Flor</span> dentro de la empresa.
+            </p>
+          </div>
+        </div>
+        <div class="card" id="sobreMi-empresa">
+          <h4>Datos empresariales</h4>
+          <p>
+            <span class="veeerde">Ubicación:</span> Sala 07 - Lado sur del
+            edificio central.
+          </p>
+          <p>
+            <span class="veeerde">Ayudante de práctica:</span> Sofía Rodríguez
+          </p>
+          <p><span class="veeerde">ID:</span> 203476995/03</p>
+        </div>
+      </section>
+
+      <!-- ---------------------------------------------------------------------------------------IDEACIÓN -->
+      <!-- <section id="secciones-Ideacion" class="oculto">
+        <div class="d-flex flex-row justify-content-evenly align-items-center">
+          <div class="card">
+            Liquido creado a base de diferentes elementos quimicos que ayuda a
+            las plantas a tener
+            <span class="veeerde">proteccion antimicrobiana</span>, le otorga
+            una <span class="veeerde">hidratacion prolongada</span> y contiene
+            propiedades <span class="veeerde">antioxidantes.</span>
+          </div>
+          <div class="card">
+            <img src="" alt="spray" />
+            <h4>Vita Spray</h4>
+          </div>
+        </div>
+        <div class="card">
+          <h4>Iniciación del proceso</h4>
+          <p>
+            El proyecto se inicia a partir de una investigación sobre las
+            plantas de la ciudad, donde se ha identificado un problema: estas no
+            sobreviven el tiempo esperado. Para abordar esta situación, se
+            realizan análisis del suelo y se concluye que la neblina ocasional
+            que cubre la ciudad impide la llegada de la luz solar, afectando así
+            el proceso de fotosíntesis. Además, los insectos polinizadores no
+            pueden cumplir con su función vital en este entorno.
+          </p>
+          <p>
+            Por lo tanto, se buscará desarrollar un producto que proporcione las
+            condiciones necesarias para garantizar la supervivencia de las
+            plantas.
+          </p>
+        </div>
+      </section> -->
+
+      <!-- ---------------------------------------------------------------------------------------DEVLOGS -->
+      <section id="secciones-logs" class="oculto">
+        <h2 id="logs-title" class="rosita">Sobre el Proyecto Flor</h2>
+        <div id="logs-sections"
+          class="d-flex flex-column justify-content-around align-items-center"
+        >
+          <div class="logs-section">
+            <div
+              class="logs-title d-flex flex-row justify-content-around shadow card"
+            >
+              <h3 class="veeerde">Presentación</h3>
+              <div class="logs-fecha d-flex flex-row justify-content-center align-items-center"></div>
+            </div>
+            <p>
+              ¡Hola! Soy Daniel Gómez, y voy a estar desarrollando mi Proyecto Flor. Crecí viendo cómo mi mamá cuida de sus flores y siempre busqué la forma de ayudarla. Lo que más nos cuesta es hacer que no pierdan el color cuando pasa la neblina, y eso es lo que estoy tratando de investigar.
+            </p>
+            <iframe class="logs-video"
+              src="https://drive.google.com/file/d/1ozlO5wLL-_gWpWhP4EmVELMjBWmgAPVl/preview"
+            ></iframe>
+            <div class="logs-line"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ------------------------------------------------------------------------------------------------------------FOOTER -->
+    <footer
+      id="footer"
+      class="d-flex flex-column justify-content-evenly align-items-center"
+    >
+      <div class="d-flex flex-column justify-content-evenly align-items-center">
+        <h5>Seguinos en:</h5>
+        <h6>
+          <a href="https://www.instagram.com/ecopetro.tdmm3/">ecopetro.tdmm3</a>
+        </h6>
+        <div class="d-flex flex-row justify-content-end">
+          <img
+            src="https://drive.google.com/thumbnail?id=1s1hbNPS469gw6yDkcSOSUmbXyI7inY42"
+            alt="logo"
+            class="img-logo"
+          />
+          <h5>Ecopetro Inc.</h5>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ----------------------------------------------------------------------------------------------------------------------------JAVASCRIPT -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="/js/funciones.js"></script>
+    <script src="/js/Daniel.js"></script>
+  </body>
+</html>

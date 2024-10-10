@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <!-- ----------------------------------------------------------------------------------------------------------------------------HEAD -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- ------------------------------------------------------------------------------------------------------------BOOTSTRAP -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <!-- ------------------------------------------------------------------------------------------------------------FORMATO -->
+    <title>Ecopetro Oficial</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://drive.google.com/thumbnail?id=1eNQo0PV_yAyWQMpgcyC5Mot7_f3aLhsF"
+    />
+
+    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="stylesheet" href="/styles/productos.css" />
+  </head>
+
+  <!-- ----------------------------------------------------------------------------------------------------------------------------BODY -->
+  <body>
+    <div
+      id="body-1"
+      class="d-flex flex-row justify-content-around align-items-start"
+    >
+      <div id="body-2">
+        <!-- ------------------------------------------------------------------------------------------------------------HEADER -->
+        <header id="header" class="row">
+          <div class="col d-flex flex-row justify-content-center">
+            <a href="/index.html">
+              <img
+                src="https://drive.google.com/thumbnail?id=134OYLXvh3Vhog6XymHYdFKix8E-bmIjE"
+                alt="volver"
+                id="button-back"
+              />
+            </a>
+          </div>
+          <div class="col d-flex flex-row justify-content-center">
+            <h6>Artículos</h6>
+          </div>
+          <div class="col"></div>
+        </header>
+
+        <!-- ------------------------------------------------------------------------------------------------------------ECOLLAR -->
+        <section
+          id="ecollar"
+          class="d-flex flex-column justify-content-center align-items-center"
+        >
+          <h1>Producto más vendido</h1>
+          <div class="card shadow">
+            <div
+              class="card-body d-flex flex-column justify-content-center align-items-center"
+            >
+              <img
+                src="https://drive.google.com/thumbnail?id=1wnoXW0-mAaNGSYGuPrnBhN9_GuKsUcDR"
+                alt="ecollar"
+              />
+              <h5 class="card-title veeerde">Collar purificador de aire</h5>
+              <p class="card-text">
+                El Ecollar utiliza nuestra tecnología revolucionaria para
+                purificar el aire que respirás de forma no invasiva. De esta
+                manera, el simple acto de respirar contribuye a la limpieza del
+                planeta.
+              </p>
+              <div class="row w-100">
+                <div class="col"></div>
+                <button type="button" disabled id="btn-comprar" class="col">
+                  Comprar
+                </button>
+                <div class="col"><p class="aclaracion">*agotado por el momento.</p></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <img
+          src="https://drive.google.com/thumbnail?id=1ZBALnYionjvKyCNAwmbbRKfJvY5wsS02"
+          alt="aire"
+          class="img-aire"
+        />
+
+        <!-- ------------------------------------------------------------------------------------------------------------LANDING -->
+        <section id="landing">
+          <div
+            class="d-flex flex-column justify-content-around align-items-center"
+          >
+            <h1>¡Ecopetro se expande!</h1>
+            <p class="text-center">
+              Estamos colaborando con un grupo de jóvenes brillantes para crear
+              <span class="veeerde">nuestro nuevo producto</span>. ¡No te
+              pierdas el gran anuncio!
+            </p>
+            <div
+              id="countdown"
+              class="d-flex flex-row justify-content-evenly align-items-center shadow rounded"
+            >
+              <div class="d-flex flex-column align-items-center countdown-data">
+                <h2 id="day">--</h2>
+                <p>DÍAS</p>
+              </div>
+              <h2>:</h2>
+              <div class="d-flex flex-column align-items-center countdown-data">
+                <h2 id="hour">--</h2>
+                <p>HORAS</p>
+              </div>
+              <h2>:</h2>
+              <div class="d-flex flex-column align-items-center countdown-data">
+                <h2 id="minute">--</h2>
+                <p>MINUTOS</p>
+              </div>
+              <h2>:</h2>
+              <div class="d-flex flex-column align-items-center countdown-data">
+                <h2 id="second">--</h2>
+                <p>SEGUNDOS</p>
+              </div>
+            </div>
+            <div>
+              <button onclick="location.replace('/html/proyectos.html')">
+                Saber más
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ------------------------------------------------------------------------------------------------------------FOOTER -->
+        <footer
+          id="footer"
+          class="d-flex flex-column justify-content-evenly align-items-center"
+        >
+          <div
+            class="d-flex flex-column justify-content-evenly align-items-center"
+          >
+            <h5>Seguinos en:</h5>
+            <h6>
+              <a href="https://www.instagram.com/ecopetro.tdmm3/"
+                >ecopetro.tdmm3</a
+              >
+            </h6>
+            <div class="d-flex flex-row justify-content-end">
+              <img
+                src="https://drive.google.com/thumbnail?id=1s1hbNPS469gw6yDkcSOSUmbXyI7inY42"
+                alt="logo"
+                class="img-logo"
+              />
+              <h5>Ecopetro Inc.</h5>
+            </div>
+          </div>
+        </footer>
+
+        <!-- ----------------------------------------------------------------------------------------------------------------------------JAVASCRIPT -->
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+          crossorigin="anonymous"
+        ></script>
+
+        <script src="/js/funciones.js"></script>
+        <script src="/js/countdown.js"></script>
+      </div>
+    </div>
+  </body>
+</html>
