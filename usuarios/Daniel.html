@@ -73,13 +73,13 @@
           id="sobreMi-cards"
           class="d-flex flex-row justify-content-between align-items-center"
         >
-          <div class="card">
+          <div class="card shadow">
             <img
               src="https://drive.google.com/thumbnail?id=1X15joV3dmNhbUAWQIkFPLTsM2wwAUTFZ"
               alt="foto del campo"
             />
           </div>
-          <div class="card">
+          <div class="card shadow">
             <p>
               Mi nombre es Daniel Gomez, tengo 30 años. Ingrese a Ecopetro en el
               año 2040, y soy el encargado del
@@ -87,7 +87,7 @@
             </p>
           </div>
         </div>
-        <div class="card" id="sobreMi-empresa">
+        <div class="card shadow" id="sobreMi-empresa">
           <h4>Datos empresariales</h4>
           <p>
             <span class="veeerde">Ubicación:</span> Sala 07 - Lado sur del
@@ -140,6 +140,66 @@
         <div id="logs-sections"
           class="d-flex flex-column justify-content-around align-items-center"
         >
+          <!-- -----------------------------------------------------------------------------LOG 1 (video 1) -->
+          <div class="logs-section">
+            <div
+              class="logs-title d-flex flex-row justify-content-around shadow card"
+            >
+              <h3 class="veeerde">Presentación</h3>
+              <div class="logs-fecha d-flex flex-row justify-content-center align-items-center"></div>
+            </div>
+            <p>
+              ¡Hola! Soy Daniel Gómez, y voy a estar desarrollando mi Proyecto Flor. Crecí viendo cómo mi mamá cuida de sus flores y siempre busqué la forma de ayudarla. Lo que más nos cuesta es hacer que no pierdan el color cuando pasa la neblina, y eso es lo que estoy tratando de investigar.
+            </p>
+            <iframe class="logs-video"
+              src="https://drive.google.com/file/d/1ozlO5wLL-_gWpWhP4EmVELMjBWmgAPVl/preview"
+            ></iframe>
+            <div class="logs-line"></div>
+          </div>
+
+          <!-- -----------------------------------------------------------------------------LOG 2 (juego) -->
+          <div class="logs-section">
+            <div
+              class="logs-title d-flex flex-row justify-content-around shadow card"
+            >
+              <h3 class="veeerde">Un jueguito</h3>
+              <div class="logs-fecha d-flex flex-row justify-content-center align-items-center"></div>
+            </div>
+            <p>
+              ¡El Proyecto Flor necesita tu ayuda! No te preocupes, no hace falta que sepas nada sobre química, sólo que tengas un poco de paciencia ¡y ganas de divertirte! Estoy seguro de que la clave está en alguna combinación de estas sustancias que ya seleccioné, necesito que me ayudes a probar distintas combinaciones hasta dar con la correcta. ¿Me ayudarías?
+            </p>
+            <button class="logs-video" onclick="reset()"
+            >JUGAR</button>
+            <div class="logs-line"></div>
+
+            <div id="juego" class="fixed-top oculto">
+              <div
+                id="canvas"
+                class="d-flex flex-column justify-content-center align-items-center"
+              >
+                <!-- CANVAS P5 -->
+              </div>
+            </div>
+          </div>
+
+          <!-- -----------------------------------------------------------------------------LOG 3 (video 2) -->
+          <div class="logs-section">
+            <div
+              class="logs-title d-flex flex-row justify-content-around shadow card"
+            >
+              <h3 class="veeerde">Presentación</h3>
+              <div class="logs-fecha d-flex flex-row justify-content-center align-items-center"></div>
+            </div>
+            <p>
+              ¡Hola! Soy Daniel Gómez, y voy a estar desarrollando mi Proyecto Flor. Crecí viendo cómo mi mamá cuida de sus flores y siempre busqué la forma de ayudarla. Lo que más nos cuesta es hacer que no pierdan el color cuando pasa la neblina, y eso es lo que estoy tratando de investigar.
+            </p>
+            <iframe class="logs-video"
+              src="https://drive.google.com/file/d/1ozlO5wLL-_gWpWhP4EmVELMjBWmgAPVl/preview"
+            ></iframe>
+            <div class="logs-line"></div>
+          </div>
+
+          <!-- -----------------------------------------------------------------------------LOG 4 (video 3) -->
           <div class="logs-section">
             <div
               class="logs-title d-flex flex-row justify-content-around shadow card"
@@ -167,7 +227,7 @@
       <div class="d-flex flex-column justify-content-evenly align-items-center">
         <h5>Seguinos en:</h5>
         <h6>
-          <a href="https://www.instagram.com/ecopetro.tdmm3/">ecopetro.tdmm3</a>
+          <a href="https://www.instagram.com/empresa.ecopetro/">@empresa.ecopetro</a>
         </h6>
         <div class="d-flex flex-row justify-content-end">
           <img
@@ -189,5 +249,10 @@
 
     <script src="../js/funciones.js"></script>
     <script src="../js/Daniel.js"></script>
+
+    <!-- ----------------------------------------------------------------------------------------------------------------------------p5 -->
+    <script src="../libraries/p5min.js"></script>
+    <script src="../libraries/p5soundmin.js"></script>
+    <script src="../js/juego.js"></script>
   </body>
 </html>

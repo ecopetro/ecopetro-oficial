@@ -81,6 +81,10 @@ p {
   background-color: gray;
 }
 
+#canvas {
+  height: 100%;
+}
+
 section {
   margin-left: 16px;
   margin-right: 16px;

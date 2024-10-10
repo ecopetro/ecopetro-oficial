@@ -6,7 +6,8 @@ const fechas = master.getElementsByClassName("logs-fecha");
 
 // -----------------------------------------------------------------------------------------------------------FIJAR FECHAS
 let dates = [
-  new Date("Oct 07, 2024 11:11:00"),
+  // new Date("Oct 7, 2024 11:11:00"),
+  // new Date("Oct 10, 2024 12:11:00"),
 
   new Date("Oct 14, 2024 12:00:00"),
   new Date("Oct 18, 2024 12:00:00"),
@@ -23,17 +24,15 @@ var x = setInterval(function () {
   // Get today's date and time
   var now = new Date().getTime();
 
-  console.log(secciones.length);
-
   for (let i = 0; i < dates.length; i++) {
     let distance = dates[i] - now;
     if (distance < 0) {
       masterMaster.classList.remove("oculto");
       secciones[i].classList.remove("oculto");
       fechas[i].innerHTML =
-        digits(dates[i].getDay()) +
+        digits(dates[i].getDate()) +
         "/" +
-        digits(dates[i].getMonth()+1) +
+        digits(dates[i].getMonth() + 1) +
         ", " +
         digits(dates[i].getHours()) +
         ":" +
@@ -47,21 +46,3 @@ var x = setInterval(function () {
     }
   }
 }, interval);
-
-// -----------------------------------------------------------------------------------------------------------ACOMODAR DÍGITOS
-function digits(n) {
-  return n >= 10 ? n : "0" + n;
-}
-
-// -----------------------------------------------------------------------------------------------------------RECIBIR PARÁMETRO
-// function getParams() {
-//   let url = location.search.split("?form=");
-//   if (url[1] === "do") {
-//     console.log(finished);
-//     if (finished === true) {
-//       location.replace("/html/proyectos.html");
-//     } else {
-//       setVisible("landing-secretForm");
-//     }
-//   }
-// }
