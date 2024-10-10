@@ -8,7 +8,7 @@ let correctas, incorrectas, acertadas, erradas;
 //------------------------------------------------------------------------------------------------------------PRELOAD
 function preload() {
   for (let i = 0; i <= 5; i++) {
-    imgs.push(loadImage("/assets/captcha" + i + ".jpg"));
+    imgs.push(loadImage("../assets/captcha" + i + ".jpg"));
   }
 }
 
@@ -30,7 +30,6 @@ function setup() {
     let l = shuffle([0, 1, 2]);
 
     for (let i = 0; i < 3; i++) {
-      console.log("{ " + i);
       let t;
       if (i < correctas) {
         t = random(piolas);
@@ -39,8 +38,6 @@ function setup() {
         t = random(impiolas);
         impiolas.splice(impiolas.indexOf(t), 1);
       }
-
-      console.log("}");
 
       tanda.push(
         new Option(
