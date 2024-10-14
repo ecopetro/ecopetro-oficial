@@ -6,9 +6,11 @@ const fechas = master.getElementsByClassName("logs-fecha");
 
 // -----------------------------------------------------------------------------------------------------------FIJAR FECHAS
 let dates = [
+  //   new Date("Oct 7, 2024 11:11:00"),
+  //   new Date("Oct 10, 2024 12:11:00"),
   // new Date("Oct 7, 2024 11:11:00"),
-  // new Date("Oct 10, 2024 12:11:00"),
-
+  //   new Date("Oct 10, 2024 12:11:00"),
+  
   new Date("Oct 14, 2024 12:00:00"),
   new Date("Oct 18, 2024 12:00:00"),
   new Date("Oct 22, 2024 12:23:00"),
