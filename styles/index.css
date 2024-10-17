@@ -1,6 +1,6 @@
-#header-botones h6 {
+/* #header-botones h6 {
   margin: 16px;
-}
+} */
 #header-logo {
   margin-right: 16px;
 }
@@ -17,7 +17,8 @@ section {
 
 #main-fondo {
   height: 100px;
-  background-image: url("https://drive.google.com/thumbnail?id=1Lt0ADyhjL8CmvJXvUjd-kwzpr1azvfgf");
+  /* background-image: url("https://drive.google.com/thumbnail?id=1Lt0ADyhjL8CmvJXvUjd-kwzpr1azvfgf"); */
+  background-image: url("../assets/index-quieres.png");
   background-position: right;
   background-repeat: no-repeat;
   background-size: auto;
@@ -30,7 +31,6 @@ section {
 
 .historia-lore {
   width: 50%;
-  height: 200px;
   margin: auto auto 32px;
 }
 .carousel-indicators button {
@@ -62,15 +62,15 @@ button {
 }
 
 /*----------------------------------------------------------------------------------------------------------------------------DESKTOP ONLY */
-/* @media screen and (min-width: 501px) {
-  section {
-    margin: 0px 10vw;
+@media screen and (min-width: 501px) {
+  .historia-lore {    
+    height: 200px;
   }
-} */
+}
 
 /*----------------------------------------------------------------------------------------------------------------------------MOBILE ONLY */
-/* @media screen and (max-width: 500px) {
-  section {
-    margin: 0px 16px;
+@media screen and (max-width: 500px) {
+  .historia-lore {
+    height: 45vh;
   }
-} */
+}

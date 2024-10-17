@@ -25,7 +25,7 @@ body {
 .rosita {
   color: #ff94f4;
 }
-.aclaracion{
+.aclaracion {
   color: gray;
   font-size: x-small;
 }
@@ -47,7 +47,7 @@ body {
   margin-bottom: 64px;
   align-items: center;
 }
-#header h5,
+.logo-div h5,
 h6 {
   margin-bottom: 0px;
 }
@@ -65,17 +65,24 @@ a {
 #footer {
   height: 20vh;
   margin: 10vh 0px 0px;
-  background-image: url("https://drive.google.com/thumbnail?id=1PvXCPb-g7b-dyHIVrWaz_Qcf1ri2yYQR");
+  /* background-image: url("https://drive.google.com/thumbnail?id=1PvXCPb-g7b-dyHIVrWaz_Qcf1ri2yYQR"); */
+  background-image: url("../assets/index-aireF.png");
   background-repeat: no-repeat;
   background-size: contain;
 }
-#footer h6{
+#footer h6 {
   margin-bottom: 16px;
 }
 
 #body-1 {
   width: 100vw;
-  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, #76ccf4 30%, #76ccf4 70%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    #76ccf4 30%,
+    #76ccf4 70%,
+    rgba(255, 255, 255, 1) 100%
+  );
 }
 #body-2 {
   width: 516px;
@@ -94,4 +101,15 @@ a {
   #body-2 {
     width: 100%;
   }
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------MUY CHIKITO ONLY */
+@media screen and (max-width: 375px) {
+  .noEnChikito {
+    display: none !important;
+  }
+  #header-logo{
+    justify-content: center !important;
+  }
+
 }

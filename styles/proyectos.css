@@ -19,16 +19,20 @@ h1 {
   background-size: auto;
 }
 #img-perfil-Daniel {
-  background-image: url("https://drive.google.com/thumbnail?id=1PLQ5SBUlGGX037TFU9uluBJhbaT8_rs3");
+  /* background-image: url("https://drive.google.com/thumbnail?id=1PLQ5SBUlGGX037TFU9uluBJhbaT8_rs3"); */
+  background-image: url("../assets/perfil-Daniel.png");
 }
 #img-perfil-2 {
-  background-image: url("https://drive.google.com/thumbnail?id=14rQ9bVJkIIAQIZdQNxeLUT91zStKlfQn");
+  /* background-image: url("https://drive.google.com/thumbnail?id=14rQ9bVJkIIAQIZdQNxeLUT91zStKlfQn"); */
+  background-image: url("../assets/perfil-Sofía.png");
 }
 #img-perfil-3 {
-  background-image: url("https://drive.google.com/thumbnail?id=1YKSDSM8kMZ3bztEI2kD5Ps1CGeHhzZi7");
+  /* background-image: url("https://drive.google.com/thumbnail?id=1YKSDSM8kMZ3bztEI2kD5Ps1CGeHhzZi7"); */
+  background-image: url("../assets/perfil-Lopez.png");
 }
 #img-perfil-4 {
-  background-image: url("https://drive.google.com/thumbnail?id=1bmotF7FJ64idjp8EMSIzCMAwDEqg_m59");
+  /* background-image: url("https://drive.google.com/thumbnail?id=1bmotF7FJ64idjp8EMSIzCMAwDEqg_m59"); */
+  background-image: url("../assets/perfil-Roma.png");
 }
 
 .especialistas-top a {

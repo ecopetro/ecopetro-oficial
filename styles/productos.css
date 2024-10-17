@@ -4,13 +4,6 @@
   margin: -200px 0px 16px;
 }
 
-#main-fondo {
-  background-image: url("https://drive.google.com/thumbnail?id=1Lt0ADyhjL8CmvJXvUjd-kwzpr1azvfgf");
-  background-position: right;
-  background-repeat: no-repeat;
-  background-size: auto;
-}
-
 #ecollar .card {
   margin: 16px auto;
 }

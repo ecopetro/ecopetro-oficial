@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Cache-Control" content="no-cache" />
-    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <script
@@ -24,11 +24,12 @@
 
     <!-- ------------------------------------------------------------------------------------------------------------FORMATO -->
     <title>Ecopetro Oficial</title>
-    <link
+    <!-- <link
       rel="icon"
       type="image/x-icon"
       href="https://drive.google.com/thumbnail?id=1eNQo0PV_yAyWQMpgcyC5Mot7_f3aLhsF"
-    />
+    /> -->
+    <link rel="icon" type="image/x-icon" href="./assets/logo.png" />
 
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="stylesheet" href="./styles/index.css" />
@@ -42,20 +43,25 @@
     >
       <div id="body-2">
         <!-- ------------------------------------------------------------------------------------------------------------HEADER -->
-        <header id="header" class="d-flex flex-row justify-content-between">
+        <!-- <header id="header" class="d-flex flex-row justify-content-between"> -->
+        <header id="header" class="row">
           <div
             id="header-botones"
-            class="d-flex flex-row justify-content-around"
+            class="d-flex flex-row justify-content-around col noEnChikito"
           >
             <h6><a href="./html/productos.html">Artículos</a></h6>
             <h6><a href="./html/proyectos.html">Especialistas</a></h6>
           </div>
-          <div id="header-logo" class="d-flex flex-row justify-content-end">
-            <img
+          <div
+            id="header-logo"
+            class="d-flex flex-row justify-content-end logo-div col"
+          >
+            <!-- <img
               src="https://drive.google.com/thumbnail?id=1eNQo0PV_yAyWQMpgcyC5Mot7_f3aLhsF"
               alt="logo"
               class="img-logo"
-            />
+            /> -->
+            <img src="./assets/logo.png" alt="logo" class="img-logo" />
             <h5>Ecopetro Inc.</h5>
           </div>
         </header>
@@ -70,11 +76,12 @@
           </section>
         </div>
 
-        <img
+        <!-- <img
           src="https://drive.google.com/thumbnail?id=1oPFoC2jPoPVu0CDt3Uw2va3bnKGhn6UB"
           alt="aire"
           class="img-aire"
-        />
+        /> -->
+        <img src="./assets/index-aireLR.png" alt="aire" class="img-aire" />
 
         <!-- ------------------------------------------------------------------------------------------------------------LANDING -->
         <section id="landing">
@@ -93,22 +100,22 @@
             >
               <div class="d-flex flex-column align-items-center countdown-data">
                 <h2 id="day">--</h2>
-                <p>DÍAS</p>
+                <p class="noEnChikito">DÍAS</p>
               </div>
               <h2>:</h2>
               <div class="d-flex flex-column align-items-center countdown-data">
                 <h2 id="hour">--</h2>
-                <p>HORAS</p>
+                <p class="noEnChikito">HORAS</p>
               </div>
               <h2>:</h2>
               <div class="d-flex flex-column align-items-center countdown-data">
                 <h2 id="minute">--</h2>
-                <p>MINUTOS</p>
+                <p class="noEnChikito">MINUTOS</p>
               </div>
               <h2>:</h2>
               <div class="d-flex flex-column align-items-center countdown-data">
                 <h2 id="second">--</h2>
-                <p>SEGUNDOS</p>
+                <p class="noEnChikito">SEGUNDOS</p>
               </div>
             </div>
             <div>
@@ -119,11 +126,12 @@
           </div>
         </section>
 
-        <img
+        <!-- <img
           src="https://drive.google.com/thumbnail?id=1ZBALnYionjvKyCNAwmbbRKfJvY5wsS02"
           alt="aire"
           class="img-aire"
-        />
+        /> -->
+        <img src="./assets/index-aireRL.png" alt="aire" class="img-aire" />
 
         <!-- ------------------------------------------------------------------------------------------------------------QUIÉNES SOMOS -->
         <section id="quienesSomos">
@@ -136,11 +144,12 @@
           </p>
         </section>
 
-        <img
+        <!-- <img
           src="https://drive.google.com/thumbnail?id=1oPFoC2jPoPVu0CDt3Uw2va3bnKGhn6UB"
           alt="aire"
           class="img-aire"
-        />
+        /> -->
+        <img src="./assets/index-aireLR.png" alt="aire" class="img-aire" />
 
         <!-- ------------------------------------------------------------------------------------------------------------PRODUCTOS -->
         <section id="productos" class="d-flex">
@@ -150,10 +159,11 @@
                 id="ecollar"
                 class="d-flex flex-column justify-content-center col-6"
               >
-                <img
+                <!-- <img
                   src="https://drive.google.com/thumbnail?id=1wnoXW0-mAaNGSYGuPrnBhN9_GuKsUcDR"
                   alt="ecollar"
-                />
+                /> -->
+                <img src="./assets/ecollar.png" alt="ecollar" />
               </div>
               <div
                 class="card-body d-flex flex-column justify-content-center col-6"
@@ -169,11 +179,12 @@
           </div>
         </section>
 
-        <img
+        <!-- <img
           src="https://drive.google.com/thumbnail?id=1ZBALnYionjvKyCNAwmbbRKfJvY5wsS02"
           alt="aire"
           class="img-aire"
-        />
+        /> -->
+        <img src="./assets/index-aireRL.png" alt="aire" class="img-aire" />
 
         <!-- ------------------------------------------------------------------------------------------------------------HISTORIA -->
         <section id="historia">
@@ -186,7 +197,9 @@
                 <div
                   class="d-flex flex-row justify-content-around align-items-start"
                 >
-                  <div class="historia-lore">
+                  <div
+                    class="historia-lore d-flex flex-column justify-content-center"
+                  >
                     <p>
                       Ecopetro es una empresa que se inauguró en el año 1978, en
                       la localidad se Ensenada,
@@ -206,7 +219,9 @@
                 <div
                   class="d-flex flex-row justify-content-around align-items-start"
                 >
-                  <div class="historia-lore">
+                  <div
+                    class="historia-lore d-flex flex-column justify-content-center"
+                  >
                     <p>
                       Frente a los altos niveles de contaminación que generaban
                       las viejas fábricas, decidimos responder con ingenio e
@@ -223,7 +238,9 @@
                 <div
                   class="d-flex flex-row justify-content-around align-items-start"
                 >
-                  <div class="historia-lore">
+                  <div
+                    class="historia-lore d-flex flex-column justify-content-center"
+                  >
                     <p>
                       Con nuestra tecnología revolucionaria, logramos reducir la
                       contaminación al fenómeno inofensivo que hoy conocemos
@@ -302,12 +319,13 @@
                 >@empresa.ecopetro</a
               >
             </h6>
-            <div class="d-flex flex-row justify-content-end">
-              <img
+            <div class="d-flex flex-row justify-content-end logo-div">
+              <!-- <img
                 src="https://drive.google.com/thumbnail?id=1eNQo0PV_yAyWQMpgcyC5Mot7_f3aLhsF"
                 alt="logo"
                 class="img-logo"
-              />
+              /> -->
+              <img src="./assets/logo.png" alt="logo" class="img-logo" />
               <h5>Ecopetro Inc.</h5>
             </div>
           </div>
