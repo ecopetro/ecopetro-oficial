@@ -82,7 +82,7 @@ function setup() {
     background-color: #56de00
   `);
   cerrarBtn.parent(canvasDiv);
-  cerrarBtn.position(windowWidth/2-32, 16);
+  cerrarBtn.position(windowWidth / 2 - 32, 16);
   cerrarBtn.mouseClicked(cerrar);
   cerrarBtn.mouseOver(() => {
     cerrarOver = true;
@@ -557,30 +557,37 @@ class Sustancia {
 
   describir() {
     if (
-      this.cursorDentro === true &&
-      sustanciaSelected === null &&
-      this.estado === 0
+      testSustancias(0, 2) &&
+      testSustancias(1, 1) &&
+      testSustancias(2, 1) &&
+      testSustancias(4)
     ) {
-      this.zona.dibujar();
-      push();
-      textAlign(LEFT, CENTER);
-      textStyle(BOLD);
-      text(
-        this.nombre,
-        this.zona.posX + 8 - this.zona.ancho / 2,
-        this.zona.posY + 16 - this.zona.alto / 2
-      );
-      pop();
-      push();
-      textAlign(LEFT, BOTTOM);
-      text(
-        this.texto,
-        this.zona.posX + 8 - this.zona.ancho / 2,
-        this.zona.posY + 4 - this.zona.alto / 2,
-        this.zona.ancho - 8,
-        this.zona.alto - 8
-      );
-      pop();
+      if (
+        this.cursorDentro === true &&
+        sustanciaSelected === null &&
+        this.estado === 0
+      ) {
+        this.zona.dibujar();
+        push();
+        textAlign(LEFT, CENTER);
+        textStyle(BOLD);
+        text(
+          this.nombre,
+          this.zona.posX + 8 - this.zona.ancho / 2,
+          this.zona.posY + 16 - this.zona.alto / 2
+        );
+        pop();
+        push();
+        textAlign(LEFT, BOTTOM);
+        text(
+          this.texto,
+          this.zona.posX + 8 - this.zona.ancho / 2,
+          this.zona.posY + 4 - this.zona.alto / 2,
+          this.zona.ancho - 8,
+          this.zona.alto - 8
+        );
+        pop();
+      }
     }
   }
 
