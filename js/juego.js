@@ -308,8 +308,17 @@ function draw() {
     for (let s of sustancias) {
       s.actualizar();
     }
-    for (let s of sustancias) {
-      s.describir();
+    if (
+      !(
+        testSustancias(0, 2) &&
+        testSustancias(1, 1) &&
+        testSustancias(2, 1) &&
+        testSustancias(4)
+      )
+    ) {
+      for (let s of sustancias) {
+        s.describir();
+      }
     }
 
     ptoque = toque;
@@ -557,37 +566,30 @@ class Sustancia {
 
   describir() {
     if (
-      !(testSustancias(0, 2) &&
-      testSustancias(1, 1) &&
-      testSustancias(2, 1) &&
-      testSustancias(4))
+      this.cursorDentro === true &&
+      sustanciaSelected === null &&
+      this.estado === 0
     ) {
-      if (
-        this.cursorDentro === true &&
-        sustanciaSelected === null &&
-        this.estado === 0
-      ) {
-        this.zona.dibujar();
-        push();
-        textAlign(LEFT, CENTER);
-        textStyle(BOLD);
-        text(
-          this.nombre,
-          this.zona.posX + 8 - this.zona.ancho / 2,
-          this.zona.posY + 16 - this.zona.alto / 2
-        );
-        pop();
-        push();
-        textAlign(LEFT, BOTTOM);
-        text(
-          this.texto,
-          this.zona.posX + 8 - this.zona.ancho / 2,
-          this.zona.posY + 4 - this.zona.alto / 2,
-          this.zona.ancho - 8,
-          this.zona.alto - 8
-        );
-        pop();
-      }
+      this.zona.dibujar();
+      push();
+      textAlign(LEFT, CENTER);
+      textStyle(BOLD);
+      text(
+        this.nombre,
+        this.zona.posX + 8 - this.zona.ancho / 2,
+        this.zona.posY + 16 - this.zona.alto / 2
+      );
+      pop();
+      push();
+      textAlign(LEFT, BOTTOM);
+      text(
+        this.texto,
+        this.zona.posX + 8 - this.zona.ancho / 2,
+        this.zona.posY + 4 - this.zona.alto / 2,
+        this.zona.ancho - 8,
+        this.zona.alto - 8
+      );
+      pop();
     }
   }
 
