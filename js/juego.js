@@ -557,10 +557,10 @@ class Sustancia {
 
   describir() {
     if (
-      testSustancias(0, 2) &&
+      !(testSustancias(0, 2) &&
       testSustancias(1, 1) &&
       testSustancias(2, 1) &&
-      testSustancias(4)
+      testSustancias(4))
     ) {
       if (
         this.cursorDentro === true &&
