@@ -76,6 +76,13 @@ p {
   height: 100px;
   background-color: gray;
 } */
+ #juego-btn{
+  width: 50%;
+  height: auto;
+  margin-top: 16px;
+
+  background-color: #ff94f4;
+ }
 .logs-line {
   width: 100%;
   height: 2px;

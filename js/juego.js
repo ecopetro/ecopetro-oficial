@@ -39,7 +39,7 @@ const TEXTOS = [
   "Ayuda a resistir infecciones y a recuperarse de daños físicos o enfermedades.",
 ];
 
-let doJuego;
+let doJuego, preDoJuego;
 let toque, ptoque;
 
 let fondoImg, consignaImg;
@@ -72,14 +72,17 @@ function setup() {
 
   juegoDiv = document.querySelector("#juego");
   doJuego = false;
+  preDoJuego = false;
 
   //----------------------------------------------------------------------------------------------BOTÓN PARA CERRAR
   cerrarBtn = createButton(`X`);
   cerrarBtn.style(`
+    width: 64px;
     height: 30px;
+    background-color: #56de00
   `);
   cerrarBtn.parent(canvasDiv);
-  cerrarBtn.position((windowWidth - canvasWidth) / 2, 8);
+  cerrarBtn.position(windowWidth/2-32, 16);
   cerrarBtn.mouseClicked(cerrar);
   cerrarBtn.mouseOver(() => {
     cerrarOver = true;
@@ -166,15 +169,6 @@ function setup() {
   imageMode(CENTER);
   colorMode(HSB, 360, 100, 100, 100);
   angleMode(DEGREES);
-}
-//----------------------------------------------------------------------------------------------PRENDER/APAGAR EL JUEGO
-function reset() {
-  let preDoJuego = doJuego;
-  setVisible("juego");
-  loop();
-  console.log(
-    "juego de " + preDoJuego + " a " + !juegoDiv.classList.contains("oculto")
-  );
 }
 
 //------------------------------------------------------------------------------------------------------------DRAW
@@ -319,6 +313,7 @@ function draw() {
     }
 
     ptoque = toque;
+    preDoJuego = doJuego;
   } else {
     noLoop();
   }
@@ -337,27 +332,31 @@ function testSustancias(t, p, pm) {
   }
 }
 
-//------------------------------------------------------------------------------------------------------------MOUSE / TACTIL
+//----------------------------------------------------------------------------------------------PRENDER/APAGAR JUEGO
+function reset() {
+  console.log(doJuego);
+  if (doJuego === false) {
+    juegoDiv.classList.remove("oculto");
+    loop();
+  }
+}
 function cerrar() {
-  if (doJuego === true) {
-    let preDoJuego = doJuego;
-    setVisible("juego");
-    console.log(
-      "juego de " + preDoJuego + " a " + !juegoDiv.classList.contains("oculto")
-    );
+  console.log(doJuego);
+  if (doJuego === true && preDoJuego === true) {
+    juegoDiv.classList.add("oculto");
   }
 }
-function outOfCanvas(x, y) {
-  if (
-    (x < 0 || x > width || y < 0 || y > height) &&
-    cerrarOver === false &&
-    doJuego === true
-  ) {
-    cerrar();
-  }
-}
+
+//------------------------------------------------------------------------------------------------------------MOUSE / TACTIL
+// function outOfCanvas(x, y) {
+//   // if (doJuego === true && preDoJuego=== false) {
+//   if ((x < 0 || x > width || y < 0 || y > height) && cerrarOver === false) {
+//     cerrar();
+//   }
+//   // }
+// }
 function mouseClicked() {
-  outOfCanvas(mouseX, mouseY);
+  // outOfCanvas(mouseX, mouseY);
 }
 function mouseDragged() {
   for (let s of sustancias) {
@@ -370,7 +369,7 @@ function mouseReleased() {
   }
 }
 function touchEnded() {
-  outOfCanvas(toque.x, toque.y);
+  // outOfCanvas(toque.x, toque.y);
 
   for (let s of sustancias) {
     s.soltar();
@@ -532,7 +531,7 @@ class Sustancia {
         ellipseMode(CENTER);
         fill(100, 100, 100, 25);
         noStroke();
-        ellipse(this.posX, this.posY, this.tam*2);
+        ellipse(this.posX, this.posY, this.tam * 2);
       }
 
       if (this.dragging === false) {
