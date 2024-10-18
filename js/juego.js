@@ -2,15 +2,58 @@
 const prop = 1310 / 1226;
 
 let juegoDiv;
-let cerrarBtn;
+let cerrarBtn, cerrarOver;
 
-let zonas, sustancias, sustanciaSelected, sustanciasEnMezcla;
+let zonas,
+  sustancias,
+  sustanciaSelected,
+  sustanciasEnMezcla,
+  consigna,
+  preConsigna,
+  totalEnMezcla;
+let porcentajes = [];
+const COLORES = [
+  "#4BB5DC",
+  "#63B330",
+  "#FFB9B9",
+  "#AC71FF",
+  "#FF622e",
+  "#f0d463",
+];
+const NOMBRES = [
+  "Antocianina",
+  "Clorofila",
+  "Tocoferol",
+
+  "Fenol",
+  "Etileno",
+  "Ácido salicílico",
+];
+const TEXTOS = [
+  "Pigmento que da color a las flores, además de protegerlas de factores como los rayos UV.",
+  "Esencial para la fotosíntesis, permitiendo que las plantas conviertan la luz solar en energía.",
+  "Antioxidante que reduce el estrés ambiental, como el exceso de luz solar o la Neblina.",
+
+  "Protege a la planta contra agentes patógenos, y regula partes de su crecimiento.",
+  "Regula la maduración, crucial para la floración y para adaptarse a heridas o infecciones.",
+  "Ayuda a resistir infecciones y a recuperarse de daños físicos o enfermedades.",
+];
 
 let doJuego;
 let toque, ptoque;
 
+let fondoImg, consignaImg;
+let sustanciasImg = [];
+
 //------------------------------------------------------------------------------------------------------------PRELOAD
-function preload() {}
+function preload() {
+  fondoImg = loadImage("../assets/juego-fondo.png");
+  consignaImg = loadImage("../assets/juego-consigna.png");
+
+  for (let i = 0; i < 6; i++) {
+    sustanciasImg.push(loadImage("../assets/sustancia" + i + ".png"));
+  }
+}
 
 //------------------------------------------------------------------------------------------------------------SETUP
 function setup() {
@@ -38,11 +81,20 @@ function setup() {
   cerrarBtn.parent(canvasDiv);
   cerrarBtn.position((windowWidth - canvasWidth) / 2, 8);
   cerrarBtn.mouseClicked(cerrar);
+  cerrarBtn.mouseOver(() => {
+    cerrarOver = true;
+  });
+  cerrarBtn.mouseOut(() => {
+    cerrarOver = false;
+  });
+  cerrarOver = false;
 
   //----------------------------------------------------------------------------------------------ZONA DE BARRA
   let zonasMargin = 16;
   zonas = [];
-  zonas.push(new Zona(16, zonasMargin, width - 32, width / 5));
+  zonas.push(
+    new Zona(16, zonasMargin, width - 32, width / 5, "#FFE3E3", CORNER)
+  );
 
   //----------------------------------------------------------------------------------------------ZONA DE SUSTANCIAS
   zonas.push(
@@ -50,12 +102,15 @@ function setup() {
       16,
       zonas[0].posY + zonas[0].alto + zonasMargin,
       width - 32,
-      zonas[0].alto / 2
+      zonas[0].alto / 2,
+      "#FFE3E3",
+      CORNER
     )
   );
 
   sustancias = [];
   for (let i = 0; i < 6; i++) {
+    // Crear al menos una sustancia de cada tipo
     sustancias.push(
       new Sustancia(
         i,
@@ -67,6 +122,7 @@ function setup() {
     );
   }
   for (let i = 0; i < 3; i++) {
+    // Duplicar las sustancias importantes para reforzar/confundir
     sustancias.push(
       new Sustancia(
         i,
@@ -77,8 +133,15 @@ function setup() {
       )
     );
   }
-  sustancias = shuffle(sustancias);
-  ordenarSustancias();
+  sustancias = shuffle(sustancias); // desordenar las sustancias para que sea más divertido
+  for (let i = 0; i < sustancias.length; i++) {
+    if (sustancias[i].estado === 0) {
+      sustancias[i].OGposX =
+        zonas[1].posX + zonas[1].alto * (i + 1) - sustancias[i].tam / 2;
+      sustancias[i].OGposY = zonas[1].posY + zonas[1].alto / 2;
+    }
+    sustancias[i].ordenar();
+  }
   sustanciaSelected = null;
 
   //----------------------------------------------------------------------------------------------ZONA DE MEZCLA
@@ -87,7 +150,9 @@ function setup() {
       16,
       zonas[1].posY + zonas[1].alto + zonasMargin,
       width - 32,
-      height - zonasMargin - (zonas[1].posY + zonas[1].alto + zonasMargin)
+      height - zonasMargin - (zonas[1].posY + zonas[1].alto + zonasMargin),
+      "#FFE3E3",
+      CORNER
     )
   );
 
@@ -100,31 +165,42 @@ function setup() {
   textAlign(CENTER, CENTER);
   imageMode(CENTER);
   colorMode(HSB, 360, 100, 100, 100);
+  angleMode(DEGREES);
 }
+//----------------------------------------------------------------------------------------------PRENDER/APAGAR EL JUEGO
 function reset() {
+  let preDoJuego = doJuego;
   setVisible("juego");
   loop();
+  console.log(
+    "juego de " + preDoJuego + " a " + !juegoDiv.classList.contains("oculto")
+  );
 }
 
 //------------------------------------------------------------------------------------------------------------DRAW
 function draw() {
+  //----------------------------------------------------------------------------------------------CONVERTIR TÁCTIL EN MOUSE
+  if (touches[0] != undefined) {
+    toque = touches[touches.length - 1];
+  } else {
+    toque = { x: mouseX, y: mouseY };
+  }
+
   //----------------------------------------------------------------------------------------------DETECTAR SI SE CIERRA EL JUEGO
   doJuego = !juegoDiv.classList.contains("oculto");
 
   if (doJuego === true) {
-    if (touches[0] != undefined) {
-      toque = touches[touches.length - 1];
-    } else {
-      toque = { x: mouseX, y: mouseY };
-    }
+    background("#FFCBCB");
+    push();
+    imageMode(CORNER);
+    image(fondoImg, 0, 0, width, height);
+    pop();
 
-    background(180);
-
-    //----------------------------------------------------------------------------------------------DIBUJAR ZONAS
     for (let z of zonas) {
       z.dibujar();
     }
 
+    //----------------------------------------------------------------------------------------------MOSTRAR BARRA DE PORCENTAJES
     let barra = {
       x: zonas[0].posX + 8,
       y: zonas[0].posY + 8,
@@ -138,30 +214,108 @@ function draw() {
     rect(barra.x, barra.y, barra.w, barra.h, 16);
     pop();
 
-    let porcentajes = [];
-    let total = 0;
-    for (let p of sustanciasEnMezcla) {
-      if (p > 0) {
-        porcentajes.push(p);
-        total += p;
+    porcentajes = [];
+    totalEnMezcla = 0;
+    for (let i = 0; i < sustanciasEnMezcla.length; i++) {
+      if (sustanciasEnMezcla[i] > 0) {
+        for (let j = 0; j < sustanciasEnMezcla[i]; j++) {
+          porcentajes.push(new Porcentaje(i, barra));
+          totalEnMezcla++;
+        }
       }
     }
-    for (let p of porcentajes) {
-      push();
-      rectMode(CORNER);
-      // fill(map(this.tipo, 0, 6, 0, 360), 80, 80);    //NECESITO MANTENER LA REFERENCIA DEL TIPO
-      noStroke();
-      rect(barra.x + 4, barra.y + 4, barra.w - 4, barra.h - 4, 16);
-      pop();
+    let anchos = (barra.w - 8) / totalEnMezcla;
+    for (let i = 0; i < porcentajes.length; i++) {
+      let p = porcentajes[i];
+      p.actualizar(barra.x + 4 + anchos * i, anchos, i, porcentajes.length - 1);
     }
-    text(
-      porcentajes + " = " + total,
-      barra.x + barra.w / 2,
-      barra.y + barra.h / 2
+
+    //----------------------------------------------------------------------------------------------MOSTRAR CONSIGNA
+    let correctas =
+      testSustancias(0, 2) && testSustancias(1, 1) && testSustancias(2, 1);
+
+    if (testSustancias(0)) {
+      consigna = "Arrastrá alguna sustancia a la mezcla para empezar.";
+    } else {
+      if (totalEnMezcla >= 6) {
+        consigna = "La mezcla se está saturando, son demasiados componentes.";
+      } else if (
+        (testSustancias(5, 1, 2) ||
+          testSustancias(4, 1, 2) ||
+          testSustancias(0, 1, 2) ||
+          testSustancias(1, 1, 2)) &&
+        !(testSustancias(2, 1, 2) || testSustancias(3, 1, 2))
+      ) {
+        consigna =
+          "La planta estaría desprotegida contra otros factores ambientales.";
+      } else if (
+        !(testSustancias(0, 1, 2) || testSustancias(2, 1, 2)) &&
+        testSustancias(1, 1, 2)
+      ) {
+        consigna = "Sería demasiado sensible al sol.";
+      } else if (!testSustancias(0, 2)) {
+        consigna = "Le faltaría color a la flor.";
+      } else if (
+        testSustancias(0, 1, 2) &&
+        (testSustancias(2, 1, 2) ||
+          testSustancias(3, 1, 2) ||
+          testSustancias(4, 1, 2) ||
+          testSustancias(5, 1, 2)) &&
+        testSustancias(1, 0)
+      ) {
+        consigna =
+          "La flor tendría problemas para captar sol en los días nublados o cuando hay Neblina.";
+      } else if (
+        testSustancias(0, 2) &&
+        testSustancias(1, 1, 2) &&
+        testSustancias(2, 0) &&
+        (testSustancias(3, 1, 2) ||
+          testSustancias(4, 1, 2) ||
+          testSustancias(5, 1, 2))
+      ) {
+        consigna =
+          "La planta estaría desprotegida contra otros factores ambientales.";
+      }
+    }
+    //------------------------------------------------------------------------------------CORRECTA
+    if (testSustancias(4) && correctas) {
+      consigna = "¡Esta combinación podría funcionar!";
+      noLoop();
+    }
+
+    //------------------------------------------------------------------------------------DIBUJAR CONSIGNA
+    push();
+    if (testSustancias(4) && correctas) {
+      textStyle(BOLD);
+      tint(100, 100, 100);
+    }
+
+    imageMode(CORNER);
+    image(
+      consignaImg,
+      barra.x,
+      zonas[0].posY + zonas[0].alto / 2,
+      zonas[0].alto / 3,
+      zonas[0].alto / 3
     );
 
+    let tx = zonas[0].ancho / 10 + 8;
+    textAlign(LEFT, CENTER);
+    text(
+      consigna,
+      barra.x + tx,
+      zonas[0].posY + zonas[0].alto / 2,
+      zonas[0].ancho - (tx + 8),
+      zonas[0].alto / 2 - 8
+    );
+    pop();
+
+    //----------------------------------------------------------------------------------------------MOSTRAR SUSTANCIAS
     for (let s of sustancias) {
       s.actualizar();
+    }
+    for (let s of sustancias) {
+      s.describir();
     }
 
     ptoque = toque;
@@ -170,14 +324,35 @@ function draw() {
   }
 }
 
+//----------------------------------------------------------------------------------------------TEST SUSTANCIAS
+function testSustancias(t, p, pm) {
+  if (p >= 0) {
+    if (pm > p) {
+      return sustanciasEnMezcla[t] === p || sustanciasEnMezcla[t] === pm;
+    } else {
+      return sustanciasEnMezcla[t] === p;
+    }
+  } else {
+    return totalEnMezcla === t;
+  }
+}
+
 //------------------------------------------------------------------------------------------------------------MOUSE / TACTIL
 function cerrar() {
   if (doJuego === true) {
+    let preDoJuego = doJuego;
     setVisible("juego");
+    console.log(
+      "juego de " + preDoJuego + " a " + !juegoDiv.classList.contains("oculto")
+    );
   }
 }
 function outOfCanvas(x, y) {
-  if (x < 0 || x > width || y < 0 || y > height) {
+  if (
+    (x < 0 || x > width || y < 0 || y > height) &&
+    cerrarOver === false &&
+    doJuego === true
+  ) {
     cerrar();
   }
 }
@@ -204,29 +379,69 @@ function touchEnded() {
 
 //------------------------------------------------------------------------------------------------------------CLASE ZONA
 class Zona {
-  constructor(x, y, w, h) {
+  constructor(x, y, w, h, c, m) {
     this.posX = x;
     this.posY = y;
     this.ancho = w;
     this.alto = h;
+    this.color = c;
+    this.modo = m;
   }
 
   dibujar() {
     push();
-    rectMode(CORNER);
-    fill(270);
+    rectMode(this.modo);
+    fill("#fff");
     strokeWeight(4);
+    stroke(this.color);
     rect(this.posX, this.posY, this.ancho, this.alto, 16);
     pop();
   }
 }
-function ordenarSustancias() {
-  for (let i = 0; i < sustancias.length; i++) {
-    if (sustancias[i].estado === 0) {
-      sustancias[i].posX =
-        zonas[1].posX + zonas[1].alto * (i + 1) - sustancias[i].tam / 2;
-      sustancias[i].posY = zonas[1].posY + zonas[1].alto / 2;
+
+class Porcentaje {
+  constructor(t, b) {
+    this.tipo = t;
+    this.cant = 0;
+
+    this.posX = 0;
+    this.posY = b.y + 4;
+    this.ancho = 0;
+    this.alto = b.h - 8;
+  }
+
+  actualizar(x, w, i, l) {
+    this.posX = x;
+    this.ancho = w;
+
+    this.index = i;
+    this.last = l;
+
+    push();
+    rectMode(CORNER);
+    fill(COLORES[this.tipo]);
+    noStroke();
+
+    let esPrimero = this.index === 0;
+    let esFinal = this.index === this.last;
+    let esUnico = this.last === 0;
+
+    if (esPrimero && !esUnico) {
+      rect(this.posX, this.posY, this.ancho, this.alto, 16, 0, 0, 16);
+    } else if (esFinal && !esUnico) {
+      rect(this.posX, this.posY, this.ancho, this.alto, 0, 16, 16, 0);
+    } else if (!esPrimero && !esFinal) {
+      rect(this.posX, this.posY, this.ancho, this.alto, 0);
+    } else if (esUnico) {
+      rect(this.posX, this.posY, this.ancho, this.alto, 16);
     }
+    pop();
+
+    // text(
+    //   this.index + "/" + this.last + " es " + this.tipo,
+    //   this.posX + this.ancho / 2,
+    //   this.posY + this.alto / 2
+    // );
   }
 }
 
@@ -234,18 +449,64 @@ function ordenarSustancias() {
 class Sustancia {
   constructor(t, x, y, s, e) {
     this.tipo = t;
+    this.color = COLORES[this.tipo];
+    this.nombre = NOMBRES[this.tipo];
+    this.texto = TEXTOS[this.tipo];
+
     this.posX = x;
     this.posY = y;
     this.tam = s;
-    this.estado = e;
 
+    this.estado = e;
     this.preEstado = this.estado;
     this.eventoEstado = false;
+    this.dragging = false;
 
-    this.tinte = map(this.tipo, 0, 6, 0, 360);
+    this.cursorDentro = false;
+
+    this.zona = null;
+
+    this.OGposX = this.posX;
+    this.OGposY = this.posY;
+    this.OGtam = this.tam;
+
+    this.roto = 0;
+    this.sentido = random([-1, +1]);
+  }
+
+  ordenar() {
+    this.posX = this.OGposX;
+    this.posY = this.OGposY;
+
+    if (this.zona === null) {
+      let zx = this.tam * 5;
+      let zy = this.tam * 1.75;
+
+      this.zona = new Zona(
+        constrain(
+          map(
+            this.OGposX,
+            zonas[1].posX,
+            zonas[1].posX + zonas[1].ancho,
+            zonas[1].posX + this.tam,
+            zonas[1].posX + zonas[1].ancho - this.tam
+          ),
+          zonas[1].posX + this.tam + zx / 2,
+          zonas[1].posX + zonas[1].ancho - this.tam - zx / 2
+        ),
+        zonas[1].posY + zonas[1].alto + 8 + zy / 2,
+        zx,
+        zy,
+        this.color,
+        CENTER
+      );
+    }
   }
 
   actualizar() {
+    this.cursorDentro =
+      dist(toque.x, toque.y, this.posX, this.posY) < this.tam / 2;
+
     this.eventoEstado = this.estado != this.preEstado;
     if (this.eventoEstado) {
       if (this.estado === 0) {
@@ -253,47 +514,93 @@ class Sustancia {
       } else if (this.estado === 1) {
         sustanciasEnMezcla[this.tipo] += 1;
       }
-
-      if (this.estado <= 1) {
-        ordenarSustancias();
-      }
       this.preEstado = this.estado;
     }
 
-    if (this.estado < 1) {
+    if (this.estado === 1 || this.dragging === true) {
+      if (this.tipo < 3) {
+        this.tam = 2 * this.OGtam;
+      }
+
+      push();
+      if (
+        testSustancias(0, 2) &&
+        testSustancias(1, 1) &&
+        testSustancias(2, 1) &&
+        testSustancias(4)
+      ) {
+        ellipseMode(CENTER);
+        fill(100, 100, 100, 25);
+        noStroke();
+        ellipse(this.posX, this.posY, this.tam*2);
+      }
+
+      if (this.dragging === false) {
+        this.roto += random(0.05, 0.2) * this.sentido;
+      }
+      translate(this.posX, this.posY);
+      rotate(this.roto);
+      imageMode(CENTER);
+      image(sustanciasImg[this.tipo], 0, 0);
+      pop();
+    } else {
+      this.tam = this.OGtam;
+
       push();
       ellipseMode(CENTER);
-      fill(this.tinte, 80, 80);
+      fill(this.color);
       noStroke();
       ellipse(this.posX, this.posY, this.tam);
       pop();
-    } else {
+    }
+    // text(this.tipo + "\n" + this.estado, this.posX, this.posY);
+  }
+
+  describir() {
+    if (
+      this.cursorDentro === true &&
+      sustanciaSelected === null &&
+      this.estado === 0
+    ) {
+      this.zona.dibujar();
       push();
-      ellipseMode(CENTER);
-      fill(this.tinte, 80, 80);
-      noStroke();
-      ellipse(this.posX, this.posY, this.tam * 1.5);
+      textAlign(LEFT, CENTER);
+      textStyle(BOLD);
+      text(
+        this.nombre,
+        this.zona.posX + 8 - this.zona.ancho / 2,
+        this.zona.posY + 16 - this.zona.alto / 2
+      );
+      pop();
+      push();
+      textAlign(LEFT, BOTTOM);
+      text(
+        this.texto,
+        this.zona.posX + 8 - this.zona.ancho / 2,
+        this.zona.posY + 4 - this.zona.alto / 2,
+        this.zona.ancho - 8,
+        this.zona.alto - 8
+      );
       pop();
     }
-    text(this.tipo + "\n" + this.estado, this.posX, this.posY);
   }
 
   mover() {
-    let cursorDentro = dist(toque.x, toque.y, this.posX, this.posY) < this.tam;
     let noOtroSelected =
       sustanciaSelected === null || sustanciaSelected === this;
-    if (cursorDentro && noOtroSelected) {
+    if (this.cursorDentro === true && noOtroSelected === true) {
       sustanciaSelected = this;
-      this.estado = 2;
+      this.dragging = true;
     }
 
-    if (this.estado === 2) {
+    if (this.dragging === true) {
       this.posX = toque.x;
       this.posY = toque.y;
     }
   }
   soltar() {
     sustanciaSelected = null;
+    this.dragging = false;
 
     if (
       this.posX > zonas[2].posX + this.tam / 2 &&
@@ -304,6 +611,9 @@ class Sustancia {
       this.estado = 1;
     } else {
       this.estado = 0;
+      this.ordenar();
     }
+
+    // console.log(this.tipo + " pasó de " + this.preEstado + " a " + this.estado);
   }
 }
