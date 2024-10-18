@@ -309,12 +309,10 @@ function draw() {
       s.actualizar();
     }
     if (
-      !(
-        testSustancias(0, 2) &&
-        testSustancias(1, 1) &&
-        testSustancias(2, 1) &&
-        testSustancias(4)
-      )
+      !testSustancias(0, 2) &&
+      !testSustancias(1, 1) &&
+      !testSustancias(2, 1) &&
+      !testSustancias(4)
     ) {
       for (let s of sustancias) {
         s.describir();
