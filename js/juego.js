@@ -41,6 +41,7 @@ const TEXTOS = [
 
 let doJuego, preDoJuego;
 let toque, ptoque;
+let resuelto;
 
 let fondoImg, consignaImg;
 let sustanciasImg = [];
@@ -73,6 +74,7 @@ function setup() {
   juegoDiv = document.querySelector("#juego");
   doJuego = false;
   preDoJuego = false;
+  resuelto = false;
 
   //----------------------------------------------------------------------------------------------BOTÓN PARA CERRAR
   cerrarBtn = createButton(`X`);
@@ -225,8 +227,11 @@ function draw() {
     }
 
     //----------------------------------------------------------------------------------------------MOSTRAR CONSIGNA
-    let correctas =
-      testSustancias(0, 2) && testSustancias(1, 1) && testSustancias(2, 1);
+    resuelto =
+      testSustancias(4) &&
+      testSustancias(0, 2) &&
+      testSustancias(1, 1) &&
+      testSustancias(2, 1);
 
     if (testSustancias(0)) {
       consigna = "Arrastrá alguna sustancia a la mezcla para empezar.";
@@ -272,14 +277,14 @@ function draw() {
       }
     }
     //------------------------------------------------------------------------------------CORRECTA
-    if (testSustancias(4) && correctas) {
+    if (resuelto === true) {
       consigna = "¡Esta combinación podría funcionar!";
       noLoop();
     }
 
     //------------------------------------------------------------------------------------DIBUJAR CONSIGNA
     push();
-    if (testSustancias(4) && correctas) {
+    if (resuelto === true) {
       textStyle(BOLD);
       tint(100, 100, 100);
     }
@@ -308,12 +313,7 @@ function draw() {
     for (let s of sustancias) {
       s.actualizar();
     }
-    if (
-      !testSustancias(0, 2) &&
-      !testSustancias(1, 1) &&
-      !testSustancias(2, 1) &&
-      !testSustancias(4)
-    ) {
+    if (resuelto === false) {
       for (let s of sustancias) {
         s.describir();
       }
